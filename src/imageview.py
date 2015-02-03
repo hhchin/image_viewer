@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 @file
-@detail
+@detail image_viewer is to display image sequences from a library
 @author hui han chin
 @date 04/2014
 """
 
+#imports
 import sys
 from PyQt4 import QtGui, QtCore
 import cv2
@@ -18,8 +19,6 @@ class Viewer(QtGui.QWidget):
     imageH = 400
     imageW = 400
     datasetFilename = ''
-
-    
 
     def __init__(self):
         super(Viewer, self).__init__()
@@ -95,10 +94,6 @@ class Viewer(QtGui.QWidget):
         self.pov.setPixmap(self.povPixarray[self.aspectAng])
         self.pov.show()
         
-#eoCap = cv2.VideoCapture()
-#eoCap.open(str(filename))
-#print eoCap.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT)
-#eoCap.release()
 
     def readMovie(self, filename, count):
         vidCap = cv2.VideoCapture(filename)
