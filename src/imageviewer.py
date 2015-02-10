@@ -311,13 +311,13 @@ class ImageViewer(QtGui.QFrame):
         self._view.wheelNotches.connect(self.handleWheelNotches)
 
         gridSize = 10
-        backgroundPixmap = QtGui.QPixmap(gridSize*2, gridSize*2)
-        backgroundPixmap.fill(QtGui.QColor("powderblue"))
-        painter = QtGui.QPainter(backgroundPixmap)
-        backgroundColor = QtGui.QColor("palegoldenrod")
-        painter.fillRect(0, 0, gridSize, gridSize, backgroundColor)
-        painter.fillRect(gridSize, gridSize, gridSize, gridSize, backgroundColor)
-        painter.end()
+        backgroundPixmap = QtGui.QPixmap(gridSize, gridSize)
+        backgroundPixmap.fill(QtGui.QColor("black"))
+        #painter = QtGui.QPainter(backgroundPixmap)
+        #backgroundColor = QtGui.QColor("black")
+        #painter.fillRect(0, 0, gridSize, gridSize, backgroundColor)
+        #painter.fillRect(gridSize, gridSize, gridSize, gridSize, backgroundColor)
+        #painter.end()
 
         self._scene.setBackgroundBrush(QtGui.QBrush(backgroundPixmap))
         self._view.setRenderHint(QtGui.QPainter.SmoothPixmapTransform)
@@ -326,23 +326,24 @@ class ImageViewer(QtGui.QFrame):
         if pixmap:
             self.pixmap = pixmap
 
-        rect = self._scene.addRect(QtCore.QRectF(0, 0, 100, 100),
-                                   QtGui.QPen(QtGui.QColor("red")))
-        rect.setZValue(1.0)
+        #rect = self._scene.addRect(QtCore.QRectF(0, 0, 100, 100),
+        #                           QtGui.QPen(QtGui.QColor("red")))
+        #rect.setZValue(1.0)
 
         layout = QtGui.QGridLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         #layout.setSpacing(0)
 
-        self._label = QtGui.QLabel()
-        #self._label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
+        """self._label = QtGui.QLabel()
+        self._label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
         self._label.setFrameStyle(QtGui.QFrame.Panel)
-        self._label.setAutoFillBackground(True);
+        self._label.setAutoFillBackground(True)
         self._label.setBackgroundRole(QtGui.QPalette.ToolTipBase)
+        self._label.setVisible(False)"""
         self.viewName = name
 
         layout.addWidget(self._view, 0, 0)
-        layout.addWidget(self._label, 0, 0, QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
+        #layout.addWidget(self._label, 0, 0, QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
         self.setLayout(layout)
 
         self.enableScrollBars(True)
@@ -396,14 +397,14 @@ class ImageViewer(QtGui.QFrame):
     
     @viewName.setter
     def viewName(self, name):
+        """
         if name:
             self._label.setText("<b>%s</b>" % name)
             self._label.show()
         else:
             self._label.setText("")
-            self._label.hide()
+            self._label.hide()"""
         self._name = name
-
     @property
     def handDragging(self):
         """Hand dragging state (*bool*)"""
