@@ -166,12 +166,12 @@ class TargetViewer(QG.QWidget):
 
 # end of TargetViewer class
 def main():
-    app = QG.QApplication(sys.argv)
     ex = TargetViewer()
-    sys.exit(app.exec_())
-
+    return app.exec_()
 #launch main 
 if __name__=='__main__':
-    main()
+    app = QG.QApplication(sys.argv)
+    sys.exit(main())
+
 
 
