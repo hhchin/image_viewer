@@ -61,9 +61,10 @@ class TargetViewer(QG.QWidget):
 
         # simulation parameters
         self.TargetLabel = QG.QLabel('-',self)
-        self.grazingAngleLabel = QG.QLabel('-',self)
         self.aspectAngleLabel = QG.QLabel('-',self)
         self.ResolutionLabel = QG.QLabel('-',self)
+        
+        self.grazingAngleLabel = QG.QLabel('-',self)
         self.RadarazimuthLabel = QG.QLabel('-',self)
 
         # 3 views image
