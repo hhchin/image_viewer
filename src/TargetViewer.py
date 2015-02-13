@@ -69,13 +69,14 @@ class TargetViewer(QG.QWidget):
 
         # 3 views image
         xmap = QG.QPixmap("../img/pov_1.png")
-        self.pov = IV.ImageViewer(xmap, "View 1")
-        self.pov.enableScrollBars(False)
-        self.pov.enableHandDrag(True)
-        self.proj= IV.ImageViewer(xmap, "View 2")
-        self.sim = QG.QLabel(self)
-        self.sim.setFixedSize(self.imageWidth, self.imageHeight)
-        self.sim.setPixmap(xmap)
+
+        viewport_name = ['Sensor View','Radar Reflectivity', 'SAR simulation']
+        self.viewports = {}
+        for i in xrange(3):
+            view = IV.ImageViewer(xmap)
+            view.enableScrollBars(False)
+            view.enableHandDrag(True)
+            self.viewports[viewport_name[i]] = view
 
         ## tool bar 
         # load file
@@ -117,9 +118,9 @@ class TargetViewer(QG.QWidget):
 
         # drawing of the UI
         viewPortLayout = QG.QHBoxLayout()
-        viewPortLayout.addWidget(self.pov, QC.Qt.AlignHCenter)
-        viewPortLayout.addWidget(self.proj, QC.Qt.AlignHCenter)
-        viewPortLayout.addWidget(self.sim, QC.Qt.AlignHCenter)
+        for i in xrange(3):
+            viewPortLayout.addWidget(self.viewports[viewport_name[i]], QC.Qt.AlignHCenter)
+            
         
         toolPortLayout = QG.QGridLayout()
         toolPortLayout.setColumnStretch(0,1)
